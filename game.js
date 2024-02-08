@@ -42,8 +42,9 @@ function create() {
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
+    platforms.create(200, 300, 'ground');
+    platforms.create(700, 400, 'ground');
+    platforms.create(100, 150, 'ground');
     platforms.create(750, 220, 'ground');
 
     player = this.physics.add.sprite(100, 450, 'dude');
@@ -121,6 +122,7 @@ function update() {
         player.setVelocityX(0);
 
         player.anims.play('turn');
+        
     }
 
     if (cursors.up.isDown && player.body.touching.down) {
@@ -146,7 +148,7 @@ function collectStar(player, star) {
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 10);
 
     }
 }
