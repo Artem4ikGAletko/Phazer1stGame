@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 1000,
     height: 600,
     physics: {
         default: 'arcade',
@@ -22,6 +22,7 @@ var game = new Phaser.Game(config);
 function preload() {
     // завантажимо асети
     this.load.image('sky', 'assets/sky.png');
+    this.load.image('fon', 'assets/fon.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
@@ -36,16 +37,21 @@ var platforms;
 function create() {
     //додамо ігровий світ
     this.add.image(400, 300, 'sky');
+    
+    
 
 // додамо платформи
     platforms = this.physics.add.staticGroup();
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    platforms.create(200, 300, 'ground');
-    platforms.create(700, 400, 'ground');
-    platforms.create(100, 150, 'ground');
-    platforms.create(750, 220, 'ground');
+    platforms.create(200, 300, 'ground').setScale(0.5).refreshBody();
+    platforms.create(700, 400, 'ground').setScale(0.5).refreshBody();
+    platforms.create(100, 150, 'ground').setScale(0.5).refreshBody();
+    platforms.create(750, 220, 'ground').setScale(0.5).refreshBody();
+    
+    platforms.create(1400, 520, 'fon').setScale(5).refreshBody();
+   
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
@@ -90,7 +96,7 @@ cursors = this.input.keyboard.createCursorKeys();
     
 
    // Текс рахунку що додає бомби
-   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+   scoreText = this.add.text(825, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
    this.physics.add.collider(player, platforms);
    this.physics.add.collider(stars, platforms);
