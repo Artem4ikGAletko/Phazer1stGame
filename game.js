@@ -26,6 +26,8 @@ function preload() {
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
+    this.load.image('sk', 'assets/sk.png');
+
     this.load.spritesheet('dude',
         'assets/dude.png',
         { frameWidth: 32, frameHeight: 48 }
@@ -38,6 +40,7 @@ function create() {
     //додамо ігровий світ
     this.add.image(400, 300, 'sky');
     
+   
     
 
 // додамо платформи
@@ -48,13 +51,20 @@ function create() {
     platforms.create(200, 300, 'ground').setScale(0.5).refreshBody();
     platforms.create(700, 400, 'ground').setScale(0.5).refreshBody();
     platforms.create(100, 150, 'ground').setScale(0.5).refreshBody();
-    platforms.create(750, 220, 'ground').setScale(0.5).refreshBody();
+    platforms.create(700, 220, 'ground').setScale(0.5).refreshBody();
+    platforms.create(400, 1000, 'ground').setScale(0.5).refreshBody();
+    platforms.create(500, 700, 'ground').setScale(0.5).refreshBody();
+    platforms.create(475, 450, 'ground').setScale(0.5).refreshBody();
+    platforms.create(650, 320, 'ground').setScale(0.5).refreshBody();
+    platforms.create(550, 120, 'ground').setScale(0.5).refreshBody();
     
     platforms.create(1400, 520, 'fon').setScale(5).refreshBody();
+
+    this.add.image(909, 200, 'sk');
    
 
     player = this.physics.add.sprite(100, 450, 'dude');
-
+    
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 // створимо анімації
@@ -97,7 +107,7 @@ cursors = this.input.keyboard.createCursorKeys();
 
    // Текс рахунку що додає бомби
    scoreText = this.add.text(825, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
+playerName = this.add.text(825, -4, 'Діма Найк', { fontSize: '32px', fill: '#000' });
    this.physics.add.collider(player, platforms);
    this.physics.add.collider(stars, platforms);
 
@@ -152,12 +162,16 @@ function collectStar(player, star) {
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
         var bomb = bombs.create(x, 16, 'bomb');
+        var bomb = bombs.create(x, 16, 'bomb');
+        var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 10);
 
     }
 }
+
+
 // бомби
 function hitBomb(player, bomb) {
     this.physics.pause();
